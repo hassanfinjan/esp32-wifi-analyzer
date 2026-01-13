@@ -1,4 +1,4 @@
-name: Build ESP32 WiFi Analyzer
+name: Build ESP32-S3 WiFi Analyzer
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
     - name: Upload firmware
       uses: actions/upload-artifact@v4
       with:
-        name: esp32-wifi-analyzer-firmware
+        name: wifi-analyzer-firmware
         path: .pio/build/esp32s3-analyzer/*.bin
