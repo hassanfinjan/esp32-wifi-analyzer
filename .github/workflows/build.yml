@@ -1,0 +1,30 @@
+name: Build ESP32 WiFi Analyzer
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install PlatformIO
+      run: pip install -U platformio
+    
+    - name: Build firmware
+      run: pio run
+    
+    - name: Upload firmware
+      uses: actions/upload-artifact@v4
+      with:
+        name: esp32-wifi-analyzer-firmware
+        path: .pio/build/esp32s3-analyzer/*.bin
